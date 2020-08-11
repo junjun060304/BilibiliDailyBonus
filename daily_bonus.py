@@ -84,14 +84,6 @@ time.sleep(5)
 # 手书嘉年华活动
 print("手书嘉年华活动 start>>>")
 
-# 获取需要投币的 UP 主列表
-r = requests.get("https://api.bilibili.com/medialist/gateway/base/detail?media_id=1005976362&pn=0&ps=20", headers=headers_with_cookie, verify=False)
-for i in r.json()['data']['medias'][0:5]:
-    bvid = i['bvid']
-    print("待投币视频: " + bvid)
-    b.reward(aid=bvid)
-    time.sleep(2)
-
 print("尝试获取抽奖资格...")
 r = requests.post("https://api.bilibili.com/x/activity/handwrite/addlotterytimes", verify=False, headers=headers_with_cookie, data={
     "csrf": b.get_csrf()
